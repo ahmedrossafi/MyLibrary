@@ -12,9 +12,12 @@ const app = express()
 
 //appeler le package expressLayouts
 const expressLayouts = require('express-ejs-layouts')
+const bodyParser = require('body-parser')
 
 //créer la réference de l'index route
 const indexRouter = require('./routes/index')
+// référence de route pour les auteurs
+const authorRouter = require('./routes/authors')
 
 //Confiugration de l'application express
 //Mise en place de l'engine de view avec du ejs
@@ -31,6 +34,8 @@ app.use(expressLayouts)
 
 //mettre tout les fichiers static du projet dans un dossier static('public')
 app.use(express.static('public'))
+//urlencoded is because the variables are going to be sent via url, and we increase the limit by 10
+app.use(bodyParser.urlencoded({ limit: '10mb' , extended: false }))
 
 //import mongoose into the backend
 const mongoose = require('mongoose')
@@ -51,6 +56,9 @@ db.once('open', function() {
 
 //utiliser l'index route, il faut préciser la route et l'index à gérer(handle)
 app.use('/', indexRouter)
+
+//chaque route dans le authorRouter sera suivie d'authors
+app.use('/authors', authorRouter)
 
 //Ecouter sur un port en mode prod || dev
 app.listen(process.env.PORT || 3000)
