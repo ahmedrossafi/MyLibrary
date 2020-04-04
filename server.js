@@ -18,6 +18,7 @@ const bodyParser = require('body-parser')
 const indexRouter = require('./routes/index')
 // référence de route pour les auteurs
 const authorRouter = require('./routes/authors')
+const bookRouter = require('./routes/books')
 
 //Confiugration de l'application express
 //Mise en place de l'engine de view avec du ejs
@@ -59,6 +60,8 @@ app.use('/', indexRouter)
 
 //chaque route dans le authorRouter sera suivie d'authors
 app.use('/authors', authorRouter)
+//appel de route for books
+app.use('/books', bookRouter)
 
 //Ecouter sur un port en mode prod || dev
 app.listen(process.env.PORT || 3000)

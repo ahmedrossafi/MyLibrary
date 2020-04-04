@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     //variable to store the search options
     let searchOptions = {}
     //check if search field exists and is not empty
-    if(req.query.name != null && req.query.name !== '') {
+    if(req.query.name != null && req.query.name != '') {
      // then pass name to the searchOptions respecting regex
      searchOptions.name = new RegExp(req.query.name, 'i')
     }
