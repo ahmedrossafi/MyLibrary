@@ -24,7 +24,11 @@ const bookSchema = new mongoose.Schema({
        required: true,
        default: Date.now
    },
-   coverImageName: {
+   coverImage: {
+       type: Buffer,
+       required: true
+   },
+   coverImageType: {
        type: String,
        required: true
    },
@@ -38,13 +42,15 @@ const bookSchema = new mongoose.Schema({
 //to create a virtual property that gets from the others properties
 bookSchema.virtual('coverImagePath').get(function() {
     //A function to check the coverImageName and create the path with it
-    if(this.coverImageName != null) {
+    if(this.coverImage != null && this.coverImageType != null) {
         //Join the path lib, the images folders and the imageName
-        return path.join('/', coverImageBasePath, this.coverImageName)
+        //return path.join('/', coverImageBasePath, this.coverImageName)
+        return `data:${this.coverImageType};charset:utf-8;base64,
+        ${this.coverImage.toString('base64')}`
     }
 })
 
 //the schema authorSchema defines the table Author
 module.exports = mongoose.model('Book', bookSchema)
 // Fl.4 export this and set it to coverImageBasePath
-module.exports.coverImageBasePath = coverImageBasePath
+//module.exports.coverImageBasePath = coverImageBasePath
