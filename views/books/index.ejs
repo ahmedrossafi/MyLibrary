@@ -19,6 +19,8 @@
     <!-- foreach book we have -->
     <% books.forEach(book => { %>
         <!-- the search should show the image of the book-->
+    <a href="books/<%= book.id %>">
        <img height="150" width="100" src="<%= book.coverImagePath %>">
+    </a>
     <% }) %> 
 </div>
