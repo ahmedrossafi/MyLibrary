@@ -1,0 +1,9 @@
+:root {
+    --color-base-hue: 179;
+    --color-danger-hue-offest:148;
+    --color-danger-hue: calc(var(--color-base-hue) - var(--color-danger-hue-offest));
+    --color-background-dark: hsl(var(--color-base-hue), 91%, 15%);
+    --color-background-light: hsl(var(--color-base-hue), 91%, 36%);
+    --color-text-light: hsl(var(--color-base-hue), 91%, 5%);
+    --nav-link-font-weight: 500;
+}
