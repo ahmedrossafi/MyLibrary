@@ -1,37 +1,47 @@
-<div>
-    <label> Title </label>
-    <input type="text" name="title" value="<%= book.title %>">
+<div class="form-row">
+    <div class="form-item">
+        <label> Title </label>
+        <input type="text" name="title" value="<%= book.title %>">
+    </div>
+    <div class="form-item">
+        <label> Author </label>
+        <select type="text" name="author">
+        <!-- Loop over authors -->
+        <% authors.forEach(author => { %>
+            <!-- the book.author is a reference to the author variable ObjectId in the model-->
+            <% if (author.id === book.author) { %>
+                <option selected label="<%= author.name %>" value="<%= author.id %>">
+            <% } else { %> 
+                <option label="<%= author.name %>" value="<%= author.id %>">
+            <% } %>
+        <% }) %>
+        </select>
+    </div>
 </div>
-<div>
-    <label> Author </label>
-    <select type="text" name="author">
-    <!-- Loop over authors -->
-    <% authors.forEach(author => { %>
-        <!-- the book.author is a reference to the author variable ObjectId in the model-->
-        <% if (author.id === book.author) { %>
-            <option selected label="<%= author.name %>" value="<%= author.id %>">
-        <% } else { %> 
-            <option label="<%= author.name %>" value="<%= author.id %>">
-        <% } %>
-    <% }) %>
-    </select>
+
+<div class="form-row">
+    <div class="form-item">
+        <label> Publish Date </label>
+        <!-- test si la date de publication est nulle sinon on doit convertir pour avoir que la partie date et non time pour cela je convertis en string et je splite-->
+        <input type="date" name="publishDate"
+           value="<%= book.publishDate == null ? '' : 
+           book.publishDate.toISOString().split('T')[0] %>"> 
+    </div>
+    <div class="form-item">
+        <label> Page Count </label>
+        <input type="number" name="pageCount" min="1" value="<%= book.pageCount %>">
+    </div>
 </div>
-<div>
-    <label> Publish Date </label>
-    <!-- test si la date de publication est nulle sinon on doit convertir pour avoir que la partie date et non time pour cela je convertis en string et je splite-->
-    <input type="date" name="publishDate"
-       value="<%= book.publishDate == null ? '' : 
-       book.publishDate.toISOString().split('T')[0] %>"> 
+
+<div class="form-row">
+    <div class="form-item form-item-no-grow">
+        <label> Cover </label>
+        <input type="file" name="cover" class="filepond">
+    </div>
+    <div class="form-item">
+        <label> Description </label>
+        <textarea type="text" name="description"> <%= book.description %> </textarea>
+    </div>
 </div>
-<div>
-    <label> Page Count </label>
-    <input type="number" name="pageCount" min="1" value="<%= book.pageCount %>">
-</div>
-<div>
-    <label> Cover </label>
-    <input type="file" name="cover" class="filepond">
-</div>
-<div>
-    <label> Description </label>
-    <textarea type="text" name="description"> <%= book.description %> </textarea>
-</div>
+
+

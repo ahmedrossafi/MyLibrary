@@ -1,6 +1,8 @@
 :root {
     --color-base-hue: 179;
     --color-danger-hue-offest:148;
+    --color-border-input-hue: 0;
+    --color-inputs-hue: 163;
     --color-danger-hue: calc(var(--color-base-hue) - var(--color-danger-hue-offest));
     --color-background-dark: hsl(var(--color-base-hue), 91%, 15%);
     --color-background-light: hsl(var(--color-base-hue), 91%, 36%);

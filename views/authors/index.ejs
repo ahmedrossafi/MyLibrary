@@ -1,8 +1,14 @@
 <h2 class="page-header"> Search Authors </h2> 
 <form action="/authors" method="GET">
-    <label> Name </label>
-    <input type="text" name="name" value=<%= searchOptions.name %>>
-    <button type="submit"> Search </button>
+    <div class="form-row">
+        <div class="form-item">
+            <label> Name </label>
+            <input type="text" name="name" value=<%= searchOptions.name %>>
+        </div>
+    </div>
+    <div class="form-row form-row-end"> 
+        <button class="btn btn-primary" type="submit"> Search </button>
+    </div>
 </form>
 <br>
 <% authors.forEach(author => { %>
@@ -10,15 +16,17 @@
 <div class="btn-row">
     <!-- j'écris les urls dépendant des routes prédéfinies -->
     <!-- For the View Author by Id-->
-    <a class="btn btn-primary" href="/authors/<%= author.id %>">View</a>
-    <a class="btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
-
-    <!-- For the delete i should use a new 
-    delete form and use the override-method library-->
-    <!-- The post method will be overriden by _method content-->
-    <!-- Include the form from the partials -->
-    <%- include('../partials/deleteForm', 
-        //Use string interpolations `` for things inside the server to be understandable
-        { url: `/authors/${author.id}` }) %>
+    <div class="form-row form-row-end btn-row">
+            <a class="btn btn-primary" href="/authors/<%= author.id %>">View</a>
+            <a class="btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
+        
+            <!-- For the delete i should use a new 
+            delete form and use the override-method library-->
+            <!-- The post method will be overriden by _method content-->
+            <!-- Include the form from the partials -->
+            <%- include('../partials/deleteForm', 
+                //Use string interpolations `` for things inside the server to be understandable
+                { url: `/authors/${author.id}` }) %>
+    </div> 
 </div>
 <% }) %> 
