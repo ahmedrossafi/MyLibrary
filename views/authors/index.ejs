@@ -11,22 +11,24 @@
     </div>
 </form>
 <br>
-<% authors.forEach(author => { %>
-    <div> <%= author.name %> </div>
-<div class="btn-row">
-    <!-- j'écris les urls dépendant des routes prédéfinies -->
-    <!-- For the View Author by Id-->
-    <div class="form-row form-row-end btn-row">
-            <a class="btn btn-primary" href="/authors/<%= author.id %>">View</a>
-            <a class="btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
-        
-            <!-- For the delete i should use a new 
-            delete form and use the override-method library-->
-            <!-- The post method will be overriden by _method content-->
-            <!-- Include the form from the partials -->
-            <%- include('../partials/deleteForm', 
-                //Use string interpolations `` for things inside the server to be understandable
-                { url: `/authors/${author.id}` }) %>
-    </div> 
-</div>
-<% }) %> 
+    <% authors.forEach(author => { %>
+        <div class="author-row">
+        <div class="author-name">
+            <%= author.name %> 
+        </div>
+        <div class="btn-row">
+            <!-- j'écris les urls dépendant des routes prédéfinies -->
+            <!-- For the View Author by Id-->
+                <a class="btn btn-primary" href="/authors/<%= author.id %>">View</a>
+                <a class="btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
+                
+                <!-- For the delete i should use a new 
+                delete form and use the override-method library-->
+                <!-- The post method will be overriden by _method content-->
+                <!-- Include the form from the partials -->
+                <%- include('../partials/deleteForm', 
+                    //Use string interpolations `` for things inside the server to be understandable
+                    { url: `/authors/${author.id}` }) %>
+            </div> 
+        </div>
+        <% }) %> 

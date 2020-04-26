@@ -190,13 +190,13 @@ false) {
       authors: authors,
       book: book
     }
-    if(hasError) {
-      if(form === "edit") {
+    /*if(hasError) {
+      if(form === 'edit') {
         params.errorMessage = 'Error Updating Book';
       } else {
         params.errorMessage = 'Error Creating Book';
       }
-    }
+    }*/
     res.render(`books/${form}`, params); // here we pass the form that will either be changed to edit or new
   } catch {
     res.redirect('/books');
