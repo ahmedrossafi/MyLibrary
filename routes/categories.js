@@ -7,7 +7,7 @@ const Book = require("../models/book");
 //To list all the categories
 router.get("/", async(req, res) => {
     try {
-        const category = await Category.find()
+        const categories = await Category.find()
         res.render("categories/index", {
             categories: categories
         })
