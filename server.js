@@ -21,6 +21,7 @@ const indexRouter = require('./routes/index')
 // référence de route pour les auteurs
 const authorRouter = require('./routes/authors')
 const bookRouter = require('./routes/books')
+const categoryRouter = require('./routes/categories')
 
 //Confiugration de l'application express
 //Mise en place de l'engine de view avec du ejs
@@ -40,7 +41,6 @@ app.use(cors())
 app.use(express.static('public'))
 //urlencoded is because the variables are going to be sent via url, and we increase the limit by 10
 app.use(bodyParser.urlencoded({ limit: '10mb' , extended: false }))
-
 
 //import mongoose into the backend
 const mongoose = require('mongoose')
@@ -66,6 +66,8 @@ app.use('/', indexRouter)
 app.use('/authors', authorRouter)
 //appel de route for books
 app.use('/books', bookRouter)
+//appel de route de categories
+app.use('/categories', categoryRouter)
 
 //Ecouter sur un port en mode prod || dev
 app.listen(process.env.PORT || 3000)

@@ -9,7 +9,7 @@ const authorSchema = new mongoose.Schema({
    } 
 })
 
-//use the book schema inside the pre
+//use the book schema inside the pre (for delete)
 //the pre method exectues after any function inside of it
 authorSchema.pre('remove' , function(next) {
    Book.find({ author: this.id } , (err, books) => {

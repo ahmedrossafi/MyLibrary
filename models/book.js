@@ -36,6 +36,11 @@ const bookSchema = new mongoose.Schema({
        type: mongoose.Schema.Types.ObjectId,
        required: true,
        ref: 'Author'
+   },
+   category: {
+       type: mongoose.Schema.Types.ObjectId,
+       required: true,
+       ref: 'Category'
    }
 })
 

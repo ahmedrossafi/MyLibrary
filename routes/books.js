@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const Book = require("../models/book");
 const Author = require("../models/author");
+const Category = require("../models/category");
 /*UploadImage.6 declare an uploadPath variable that will join between the public path and our created variable 
 from the model and compose with it the realpath */
 //const uploadPath = path.join('public', Book.coverImageBasePath)
