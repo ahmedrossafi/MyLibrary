@@ -6,15 +6,21 @@ const Book = require("../models/book");
 
 //To list all the categories
 router.get("/", async(req, res) => {
+    let searchOptions = {};
+    if(req.query.name != null && req.query.name != "") {
+        searchOptions.name = RegExp(req.query.name, "i");
+    }
     try {
-        const categories = await Category.find()
+        const categories = await Category.find(searchOptions);
         res.render("categories/index", {
-            categories: categories
+            categories: categories,
+            searchOptions: req.query,
         })
     } catch {
         res.redirect("/")
     }
 })
+
 
 //Afficher la forme de création d'une nouvelle catégorie
 router.get("/new", (req, res) => {
