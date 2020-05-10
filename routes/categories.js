@@ -36,8 +36,8 @@ router.post("/", async(req, res) => {
         const newCategory = await category.save();
         //res.redirect("/");
         //console.log("Created");
-        //res.redirect(`categories/${newCategory.id}`);
-        res.redirect("/categories")
+        res.redirect(`categories/${newCategory.id}`);
+        //res.redirect("/categories")
         console.log("Category Created")
     } catch {
         res.render("categories/new", {
@@ -46,5 +46,49 @@ router.post("/", async(req, res) => {
         });
     }
 })
+
+//Methode pour avoir une catégorie by id
+router.get("/:id", async (req, res) => {
+    try {
+        const category = await Category.findById(req.params.id);
+        res.render("categories/show", {
+            category: category
+        });
+    } catch {
+        res.redirect("/");
+    }
+})
+
+//Methode get pour la page modifier pour remplir par la catégorie à modifier
+router.get("/:id/edit", async (req, res) => {
+    try {
+        const category = await Category.findById(req.params.id);
+        res.render("categories/edit", { category: category })
+    } catch {
+        res.redirect("/categories");
+    }
+});
+
+router.put("/:id", async(req,res) => {
+    let category;
+    try {
+        category = await Category.findById(req.params.id);
+        category.name = req.body.name;
+        await category.save()
+        //for now we will show a log message instead of redirecting
+        //console.log("Updated Successfully")
+        // if successful redirect to category/id page
+        res.redirect(`/categories/${category.id}`);
+    } catch{
+        if(category == null) {
+            res.redirect("/");
+        } else {
+            res.render("category/edit", {
+                category: category,
+                errorMessage: "Error updating Category",
+            });
+        }
+    }
+});
 
 module.exports = router //when there is the error message requires a middleware function

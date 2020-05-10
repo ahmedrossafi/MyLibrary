@@ -37,11 +37,11 @@ const bookSchema = new mongoose.Schema({
        required: true,
        ref: 'Author'
    },
-   category: {
+   /*category: {
        type: mongoose.Schema.Types.ObjectId,
        required: true,
        ref: 'Category'
-   }
+   }*/
 })
 
 //to create a virtual property that gets from the others properties
