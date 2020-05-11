@@ -48,12 +48,17 @@
     align-content: flex-start;
     grid-template-areas: 
     "edit delete"
-    "author author";
+    "author category";
     grid-gap: .5rem;
     margin-top: .5rem;
 }
 
 .book-details-author-button {
     grid-area: author;
+    justify-self: stretch;
+}
+
+.book-details-category-button {
+    grid-area: category;
     justify-self: stretch;
 }

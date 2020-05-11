@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const Book = require("../models/book");
 const Author = require("../models/author");
+const Category = require("../models/category");
 /*UploadImage.6 declare an uploadPath variable that will join between the public path and our created variable 
 from the model and compose with it the realpath */
 //const uploadPath = path.join('public', Book.coverImageBasePath)
@@ -78,6 +79,7 @@ router.post("/", async (req, res) => {
   const book = new Book({
     title: req.body.title,
     author: req.body.author,
+    category: req.body.category,
     publishDate: new Date(req.body.publishDate),
     pageCount: req.body.pageCount,
     description: req.body.description,
@@ -102,6 +104,7 @@ router.get('/:id', async (req, res) => {
     try {
     const book = await Book.findById(req.params.id)
                  .populate('author')
+                 .populate('category')
                  .exec()
     res.render('books/show', { book : book })
     } catch {
@@ -126,6 +129,7 @@ router.put('/:id', async(req, res) => {
     book = await Book.findById(req.params.id);
     book.title = req.body.title
     book.author = req.body.author
+    book.category = req.body.category
     book.publishDate = new Date(req.body.publishDate) //parse the string to Date
     book.pageCount =  req.body.pageCount
     book.description = req.body.description
@@ -185,9 +189,11 @@ async function renderEditPage(res, book, hasError = false) {
 async function renderFormPage(res, book, form, hasError =
 false) {
   try {
+    const categories = await Category.find({});
     const authors = await Author.find({});
     const params = {
       authors: authors,
+      categories: categories,
       book: book
     }
     /*if(hasError) {

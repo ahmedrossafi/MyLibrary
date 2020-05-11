@@ -28,6 +28,19 @@
            book.publishDate.toISOString().split('T')[0] %>"> 
     </div>
     <div class="form-item">
+        <label> Category </label>
+        <select type="text" name="category">
+           <% categories.forEach(category => { %>
+               <% if(category.id === book.category) { %>
+                   <option selected label="<%= category.name %>" value="<%= category.id %>">
+               <% } else { %>
+               <option label="<%= category.name %>" value="<%= category.id %>"></option>
+               <% } %>
+           <% }); %>
+        </select>
+    </div>
+    
+    <div class="form-item">
         <label> Page Count </label>
         <input type="number" name="pageCount" min="1" value="<%= book.pageCount %>">
     </div>

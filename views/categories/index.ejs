@@ -20,6 +20,7 @@
     <div class="btn-row">
         <a class="btn btn-primary" href="/categories/<%= category.id %>"> View </a>
         <a  class="btn btn-primary" href="/categories/<%= category.id %>/edit"> Edit </a>
+        <%- include('../partials/deleteForm',  { url : `/categories/${category.id}` }) %>
     </div>
 </div>
 <% }) %>

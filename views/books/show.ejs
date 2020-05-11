@@ -7,11 +7,14 @@
             <a class="btn btn-primary" href="/books/<%= book.id %>/edit">Edit Book</a>
             <%- include('../partials/deleteForm', { url : `/books/${book.id}`}) %>
             <a class="btn btn-primary book-details-author-button" href="/authors/<%= book.author.id %>"> View Author </a>
+            <a class="btn btn-primary book-details-category-button" href="/categories/<%= book.category.id %>"> View Category </a>
         </div>
     </div>
     <div class="book-details-grid">
         <div class="book-details-label"> Author : </div>
         <div> <%= book.author.name %> </div>
+        <div class="book-details-label"> Category : </div>
+        <div> <%= book.category.name %> </div>
         <div class="book-details-label"> Publish Date : </div>
         <div> <%= book.publishDate.toDateString() %> </div>
         <div class="book-details-label"> Page Count : </div>
