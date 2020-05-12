@@ -1,7 +1,7 @@
 <h2 class="page-header"> <%= category.name %> </h2>
 <div class="btn-row">
   <a class="btn btn-primary" href="/categories/<%= category.id %>/edit"> Edit Category </a>
-  <%- include('../partials/deleteForm.ejs', { url : `/categories/${category.id}` }) %>
+  <%- include('../partials/deleteForm', { url : `/categories/${category.id}` }) %>
 </div>
 <% if (booksByCategory.length > 0) { %>
 <h2 class="page-header"> Books By Category </h2>

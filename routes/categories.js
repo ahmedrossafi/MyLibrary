@@ -94,15 +94,15 @@ router.put("/:id", async(req,res) => {
 });
 
 //Méthode delte pour supprimer une catégorie
-router.delete("/:id", async(req, res) => {
-    let categorie;
+router.delete("/:id", async (req, res) => {
+    let category
     try {
-        categorie = await Category.findById(req.params.id);
-        categorie.remove();
-        res.redirect("/categories")
+        category = await Category.findById(req.params.id);
+        await category.remove();
+        res.redirect("/categories");
         } catch {
             //verifier s'il n'y a pas de catégorie
-            if(categorie == null) {
+            if(category == null) {
                 res.redirect("/");
             // sinon s'il y a une catégorie et qu'elle ne doit pas être supprimée
             } else {
