@@ -38,7 +38,7 @@ router.post("/", async(req, res) => {
         //console.log("Created");
         res.redirect(`categories/${newCategory.id}`);
         //res.redirect("/categories")
-        console.log("Category Created")
+        //console.log("Category Created")
     } catch {
         res.render("categories/new", {
             category: category,
@@ -51,8 +51,10 @@ router.post("/", async(req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         const category = await Category.findById(req.params.id);
+        const books = await Book.find({ category: category.id }).limit(8).exec();
         res.render("categories/show", {
-            category: category
+            category: category,
+            booksByCategory : books,
         });
     } catch {
         res.redirect("/");
